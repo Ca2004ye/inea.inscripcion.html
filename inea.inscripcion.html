@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INEA - Curso de Alfabetización</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0; /* Un gris claro para el fondo */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ef4444; /* Rojo de Tailwind (red-500) */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626; /* Rojo más oscuro (red-600) */
+        }
+
+        /* Custom styles for the success message modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg py-6 px-4 md:px-8">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img id="logo-img" src="https://placehold.co/100x100/ef4444/ffffff?text=INEA" alt="Logo INEA" class="h-24 w-24 rounded-full shadow-md mr-4 border-4 border-red-500">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-red-600 leading-tight">
+                    INEA
+                    <span class="block text-3xl md:text-4xl text-gray-700 font-semibold mt-1">Alfabetización</span>
+                </h1>
+            </div>
+            <!-- <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#institucional" class="text-lg font-medium text-gray-700 hover:text-red-600 transition duration-300">Institucional</a></li>
+                    <li><a href="#inscripcion" class="text-lg font-medium text-gray-700 hover:text-red-600 transition duration-300">Inscripción</a></li>
+                </ul>
+            </nav> -->
+        </div>
+    </header>
+
+    <main class="container mx-auto my-8 p-4 md:p-8 bg-white rounded-xl shadow-xl">
+
+        <section id="institucional" class="mb-12">
+            <h2 class="text-4xl font-bold text-red-600 mb-6 text-center">Acerca del INEA y Nuestro Curso</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-red-50 p-6 rounded-lg shadow-md border border-red-200">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3 flex items-center"><i class="fas fa-bullseye mr-3 text-red-500"></i>Misión</h3>
+                    <p class="text-gray-700 leading-relaxed">Promover, organizar y atender los servicios de alfabetización, educación primaria y secundaria para jóvenes y adultos de 15 años o más, que no hayan cursado o concluido su educación básica, a través de un modelo educativo flexible y pertinente.</p>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-lg shadow-md border border-red-200">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3 flex items-center"><i class="fas fa-eye mr-3 text-red-500"></i>Visión</h3>
+                    <p class="text-gray-700 leading-relaxed">Ser la institución líder en la atención educativa de jóvenes y adultos, reconocida por su calidad, innovación y cobertura, que contribuya a la construcción de una sociedad más justa, equitativa e incluyente.</p>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-lg shadow-md border border-red-200">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3 flex items-center"><i class="fas fa-handshake mr-3 text-red-500"></i>Valores</h3>
+                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                        <li><strong>Compromiso:</strong> Con la educación de los jóvenes y adultos.</li>
+                        <li><strong>Respeto:</strong> A la diversidad y dignidad de las personas.</li>
+                        <li><strong>Equidad:</strong> En el acceso a las oportunidades educativas.</li>
+                        <li><strong>Transparencia:</strong> En la gestión y rendición de cuentas.</li>
+                        <li><strong>Innovación:</strong> En los procesos educativos y tecnológicos.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-lg shadow-md border border-red-200">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3 flex items-center"><i class="fas fa-lightbulb mr-3 text-red-500"></i>Objetivo del Curso de Alfabetización</h3>
+                    <p class="text-gray-700 leading-relaxed">Desarrollar en los participantes las habilidades básicas de lectura, escritura y cálculo, que les permitan insertarse activamente en la vida social, económica y cultural, mejorando su calidad de vida y abriendo nuevas oportunidades de desarrollo personal.</p>
+                    <p class="text-gray-700 leading-relaxed mt-3 font-semibold">Nuestro objetivo principal es sacar a todas las personas del rezago educativo, especialmente a aquellas que no cuentan con la educación primaria.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="nota-importante" class="mb-12 p-6 bg-red-100 rounded-xl shadow-md border border-red-300 text-center">
+            <h3 class="text-3xl font-bold text-red-800 mb-4 flex items-center justify-center"><i class="fas fa-info-circle mr-3 text-red-600"></i>Nota Importante</h3>
+            <p class="text-gray-800 leading-relaxed text-lg">Al término del curso de alfabetización, recibirán una <strong>constancia oficial de lectoescritura</strong>. Esta constancia les servirá para tomar el curso y obtener el certificado de primaria a través de un examen único.</p>
+        </section>
+
+        <section id="inscripcion" class="mt-12 p-8 bg-red-50 rounded-xl shadow-inner border border-red-200">
+            <h2 class="text-4xl font-bold text-red-600 mb-8 text-center">Formulario de Inscripción al Curso de Alfabetización</h2>
+
+            <form id="registrationForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="nombre" class="block text-gray-700 text-lg font-semibold mb-2">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                </div>
+
+                <div>
+                    <label for="fechaNacimiento" class="block text-gray-700 text-lg font-semibold mb-2">Fecha de Nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                </div>
+
+                <div>
+                    <label for="curp" class="block text-gray-700 text-lg font-semibold mb-2">CURP:</label>
+                    <input type="text" id="curp" name="curp" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required pattern="[A-Z]{4}[0-9]{6}[H,M][A-Z]{5}[0-9]{2}" title="Formato de CURP inválido. Ej: AAAA000000HAAAAA00">
+                </div>
+
+                <div>
+                    <label for="curso" class="block text-gray-700 text-lg font-semibold mb-2">Curso al que te inscribes:</label>
+                    <input type="text" id="curso" name="curso" value="Alfabetización" class="w-full p-3 border border-gray-300 bg-gray-200 rounded-lg cursor-not-allowed" readonly>
+                </div>
+
+                <div>
+                    <label for="modalidad" class="block text-gray-700 text-lg font-semibold mb-2">Modalidad del Curso:</label>
+                    <select id="modalidad" name="modalidad" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                        <option value="">Selecciona una modalidad</option>
+                        <option value="presencial">Presencial</option>
+                        <option value="virtual">Virtual</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="telefono" class="block text-gray-700 text-lg font-semibold mb-2">Teléfono (10 dígitos):</label>
+                    <input type="tel" id="telefono" name="telefono" maxlength="10" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" pattern="[0-9]{10}" title="Por favor, ingresa un número de teléfono de 10 dígitos." required>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-gray-700 text-lg font-semibold mb-2">E-mail:</label>
+                    <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                </div>
+
+                <div>
+                    <label for="ciudad" class="block text-gray-700 text-lg font-semibold mb-2">Ciudad:</label>
+                    <input type="text" id="ciudad" name="ciudad" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                </div>
+
+                <div>
+                    <label for="estado" class="block text-gray-700 text-lg font-semibold mb-2">Estado:</label>
+                    <select id="estado" name="estado" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                        <option value="">Selecciona un estado</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="México">México</option>
+                        <option value="Michoacán de Ocampo">Michoacán de Ocampo</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz de Ignacio de la Llave">Veracruz de Ignacio de la Llave</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label for="comentarios" class="block text-gray-700 text-lg font-semibold mb-2">Comentarios:</label>
+                    <textarea id="comentarios" name="comentarios" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                </div>
+
+                <div class="md:col-span-2 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+                        <i class="fas fa-user-plus mr-3"></i>Generar Inscripción
+                    </button>
+                    <button type="button" id="exportPdfBtn" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+                        <i class="fas fa-file-pdf mr-3"></i>Exportar Recibo en PDF
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <i class="fas fa-check-circle text-green-500 text-6xl mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">¡Inscripción Exitosa!</h2>
+            <p class="text-lg text-gray-700">Te has inscrito correctamente al curso de Alfabetización del INEA.</p>
+            <button id="modalCloseBtn" class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full shadow-md transition duration-300">Cerrar</button>
+        </div>
+    </div>
+
+    <footer class="bg-red-700 text-white py-8 px-4 md:px-8 mt-12">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                <p>&copy; 2025 INEA. Todos los derechos reservados.</p>
+                <p class="mt-2 text-sm">Instituto Nacional para la Educación de los Adultos</p>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="https://wa.me/5215512345678" target="_blank" class="text-white hover:text-green-400 transition duration-300 text-4xl" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://facebook.com/ineaoficial" target="_blank" class="text-white hover:text-blue-400 transition duration-300 text-4xl" aria-label="Facebook">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="https://instagram.com/inea_mx" target="_blank" class="text-white hover:text-pink-400 transition duration-300 text-4xl" aria-label="Instagram">
+                    <i class="fab fa-instagram-square"></i>
+                </a>
+                <a href="https://tiktok.com/@inea_oficial" target="_blank" class="text-white hover:text-black transition duration-300 text-4xl" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://linkedin.com/company/inea-mx" target="_blank" class="text-white hover:text-blue-300 transition duration-300 text-4xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        // Get references to form elements and buttons
+        const registrationForm = document.getElementById('registrationForm');
+        const exportPdfBtn = document.getElementById('exportPdfBtn');
+        const successModal = document.getElementById('successModal');
+        const closeButtons = document.querySelectorAll('.close-button, #modalCloseBtn');
+        const telefonoInput = document.getElementById('telefono');
+        const logoImg = document.getElementById('logo-img');
+
+        // --- Logo Link Configuration ---
+        // Replace 'YOUR_GITHUB_LOGO_LINK_HERE' with the actual link to your logo on GitHub or any other image hosting.
+        // Example: 'https://raw.githubusercontent.com/yourusername/yourrepo/main/logo.png'
+        const githubLogoLink = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/INEA_Logo.svg/1200px-INEA_Logo.svg.png'; // Placeholder, replace with actual link
+        logoImg.src = githubLogoLink; // Set the logo source
+
+        // --- Event Listener for Form Submission ---
+        registrationForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Basic form validation (HTML5 'required' and 'pattern' attributes handle most of it)
+            if (!registrationForm.checkValidity()) {
+                // If form is invalid, trigger browser's default validation messages
+                registrationForm.reportValidity();
+                return;
+            }
+
+            // Display success message
+            successModal.style.display = 'flex'; // Show the modal
+
+            // Clear the form after successful submission
+            registrationForm.reset();
+        });
+
+        // --- Event Listener for Export PDF Button ---
+        exportPdfBtn.addEventListener('click', function() {
+            // Collect form data
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                fechaNacimiento: document.getElementById('fechaNacimiento').value,
+                curp: document.getElementById('curp').value,
+                curso: document.getElementById('curso').value,
+                modalidad: document.getElementById('modalidad').value,
+                telefono: document.getElementById('telefono').value,
+                email: document.getElementById('email').value,
+                ciudad: document.getElementById('ciudad').value,
+                estado: document.getElementById('estado').value,
+                comentarios: document.getElementById('comentarios').value,
+            };
+
+            // Check if all required fields for PDF are filled (optional, but good practice)
+            const requiredFields = ['nombre', 'fechaNacimiento', 'curp', 'modalidad', 'telefono', 'email', 'ciudad', 'estado'];
+            const allFieldsFilled = requiredFields.every(field => formData[field] !== '');
+
+            if (!allFieldsFilled) {
+                // Use a custom message box instead of alert()
+                showCustomMessageBox("Por favor, rellena todos los campos obligatorios antes de generar el recibo.");
+                return;
+            }
+
+            // Generate PDF
+            generatePdfRecibo(formData);
+        });
+
+        // --- Function to Generate PDF Recibo ---
+        async function generatePdfRecibo(data) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add title
+            doc.setFontSize(24);
+            doc.setTextColor(220, 38, 38); // Tailwind red-600
+            doc.text("Recibo de Inscripción INEA", doc.internal.pageSize.width / 2, 20, { align: 'center' });
+
+            // Add INEA logo (simple placeholder, can be replaced with actual image)
+            // For a real logo, you'd load it as base64 or from a URL if jspdf supports it directly.
+            // For simplicity, we'll just add a text placeholder or a simple shape.
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Logo INEA", 10, 15); // Placeholder text for logo
+
+            // Add current date
+            doc.setFontSize(12);
+            doc.setTextColor(50, 50, 50);
+            const currentDate = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+            doc.text(`Fecha de Emisión: ${currentDate}`, doc.internal.pageSize.width - 10, 30, { align: 'right' });
+
+
+            let yPos = 40; // Starting Y position for content
+
+            // Add form data
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0); // Black text
+
+            const addField = (label, value) => {
+                doc.setFont('helvetica', 'bold');
+                doc.text(`${label}:`, 20, yPos);
+                doc.setFont('helvetica', 'normal');
+                doc.text(value, 80, yPos);
+                yPos += 10;
+            };
+
+            addField("Nombre Completo", data.nombre);
+            addField("Fecha de Nacimiento", data.fechaNacimiento);
+            addField("CURP", data.curp);
+            addField("Curso", data.curso);
+            addField("Modalidad", data.modalidad);
+            addField("Teléfono", data.telefono);
+            addField("E-mail", data.email);
+            addField("Ciudad", data.ciudad);
+            addField("Estado", data.estado);
+
+            if (data.comentarios) {
+                yPos += 5; // Add some space before comments
+                doc.setFont('helvetica', 'bold');
+                doc.text("Comentarios:", 20, yPos);
+                doc.setFont('helvetica', 'normal');
+                // Split comments into multiple lines if too long
+                const commentsLines = doc.splitTextToSize(data.comentarios, doc.internal.pageSize.width - 40);
+                doc.text(commentsLines, 20, yPos + 7);
+                yPos += (commentsLines.length * 7) + 10;
+            }
+
+            // Add a footer message
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Este es un comprobante de su pre-inscripción. Recibirá más información en su correo electrónico.", doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 20, { align: 'center' });
+
+            // Save the PDF
+            doc.save(`Recibo_Inscripcion_INEA_${data.nombre.replace(/\s/g, '_')}.pdf`);
+        }
+
+        // --- Close Modal Functionality ---
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                successModal.style.display = 'none'; // Hide the modal
+            });
+        });
+
+        // Close modal if user clicks outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target == successModal) {
+                successModal.style.display = 'none';
+            }
+        });
+
+        // --- Custom Message Box Function (replaces alert()) ---
+        function showCustomMessageBox(message) {
+            const existingMessageBox = document.getElementById('customMessageBox');
+            if (existingMessageBox) {
+                existingMessageBox.remove(); // Remove existing one if any
+            }
+
+            const messageBox = document.createElement('div');
+            messageBox.id = 'customMessageBox';
+            messageBox.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            messageBox.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-xl text-center max-w-sm mx-auto">
+                    <p class="text-lg font-semibold text-gray-800 mb-4">${message}</p>
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full shadow-md transition duration-300" onclick="document.getElementById('customMessageBox').remove()">
+                        Entendido
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(messageBox);
+        }
+
+        // --- Phone Number Input Limit ---
+        telefonoInput.addEventListener('input', function() {
+            // Remove any non-digit characters
+            this.value = this.value.replace(/\D/g, '');
+            // Limit to 10 characters
+            if (this.value.length > 10) {
+                this.value = this.value.slice(0, 10);
+            }
+        });
+    </script>
+</body>
+</html>
